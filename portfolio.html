@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yukta Sinhan — E-Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --dark: #1A1814;
+    --accent: #C4855A;
+    --accent-light: #F0D9C8;
+    --muted: #6B6560;
+    --border: #E8E2D9;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; color: var(--dark); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { width: 22px; height: 1.5px; background: var(--dark); display: block; transition: all 0.3s; }
+
+  /* PAGES */
+  .page { display: none; min-height: 100vh; padding-top: 60px; }
+  .page.active { display: block; animation: fadeUp 0.4s ease; }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform: translateY(0); } }
+
+  /* ---- HOME ---- */
+  #home {
+    display: none;
+    min-height: 100vh; padding-top: 60px;
+    align-items: center;
+  }
+  #home.active { display: flex; }
+  .home-inner {
+    max-width: 1100px; margin: 0 auto; padding: 5rem 2rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .home-text {}
+  .home-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+    color: var(--accent); background: var(--accent-light);
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .home-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    line-height: 1.1; color: var(--dark); margin-bottom: 1rem;
+  }
+  .home-name em { color: var(--accent); font-style: italic; }
+  .home-desc {
+    font-size: 16px; color: var(--muted); max-width: 420px;
+    margin-bottom: 2rem; line-height: 1.8;
+  }
+  .btn {
+    display: inline-block;
+    padding: 12px 28px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+    border: 1.5px solid var(--accent); color: var(--accent);
+    border-radius: 2px; text-decoration: none; cursor: pointer; background: transparent;
+    transition: all 0.2s;
+  }
+  .btn:hover { background: var(--accent); color: var(--white); }
+  .btn-fill { background: var(--accent); color: var(--white); }
+  .btn-fill:hover { background: #b07448; border-color: #b07448; }
+
+  .home-photo-wrap {
+    position: relative; display: flex; justify-content: center;
+  }
+  .photo-frame {
+    width: 340px; height: 400px;
+    background: var(--border);
+    border-radius: 2px;
+    position: relative; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; color: var(--muted);
+  }
+  .photo-placeholder .icon { font-size: 2rem; opacity: 0.4; }
+  .photo-placeholder p { font-size: 13px; opacity: 0.6; text-align: center; padding: 0 1rem; }
+  .photo-accent {
+    position: absolute; bottom: -12px; right: -12px;
+    width: 100px; height: 100px;
+    background: var(--accent-light); border-radius: 2px; z-index: -1;
+  }
+
+  .home-stats {
+    display: flex; gap: 2rem; margin-top: 2.5rem; padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat { }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); }
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+
+  /* ---- SECTIONS SHARED ---- */
+  .page-header {
+    max-width: 700px; margin: 0 auto; padding: 4rem 2rem 2rem;
+    text-align: center;
+  }
+  .page-tag {
+    display: inline-block; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; color: var(--accent); background: var(--accent-light);
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem;
+  }
+  .page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin-bottom: 1rem;
+  }
+  .page-subtitle { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+  .divider {
+    width: 40px; height: 2px; background: var(--accent);
+    margin: 1.5rem auto;
+  }
+  .content-wrap { max-width: 860px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+  /* ---- ABOUT ---- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .about-photo-wrap { position: relative; }
+  .about-photo {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--border); border-radius: 2px; overflow: hidden;
+  }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .about-accent-box {
+    position: absolute; bottom: -1rem; left: -1rem;
+    background: var(--accent); color: white;
+    padding: 1rem 1.25rem; font-size: 13px; line-height: 1.5;
+    border-radius: 2px; max-width: 180px;
+  }
+  .about-accent-box strong { display: block; font-size: 18px; font-family: 'DM Serif Display', serif; }
+  .about-text h2 {
+    font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 1rem;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 15px; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1.5rem; }
+  .skill-tag {
+    background: var(--white); border: 1px solid var(--border);
+    padding: 6px 12px; border-radius: 2px; font-size: 12px;
+    color: var(--dark); font-weight: 500;
+  }
+  .interests-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+  .interest-pill {
+    background: var(--accent-light); color: var(--accent);
+    font-size: 12px; font-weight: 500; padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* ---- ACHIEVEMENTS ---- */
+  .achieve-list { display: flex; flex-direction: column; gap: 1rem; }
+  .achieve-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 2px; padding: 1.25rem 1.5rem;
+    display: grid; grid-template-columns: 56px 1fr; gap: 1.25rem; align-items: start;
+  }
+  .achieve-icon {
+    width: 56px; height: 56px; background: var(--accent-light);
+    border-radius: 2px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .achieve-title { font-weight: 500; font-size: 15px; margin-bottom: 4px; }
+  .achieve-sub { font-size: 13px; color: var(--muted); }
+  .achieve-year {
+    font-size: 11px; font-weight: 500; color: var(--accent);
+    background: var(--accent-light); padding: 2px 8px; border-radius: 20px;
+    display: inline-block; margin-top: 6px;
+  }
+  .cert-note {
+    font-size: 12px; color: var(--muted); font-style: italic;
+    margin-top: 4px; display: block;
+  }
+
+  /* ---- PROJECTS ---- */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .proj-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 2px; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .proj-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .proj-img {
+    height: 180px; background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 13px; flex-direction: column; gap: 6px;
+  }
+  .proj-img .icon { font-size: 1.8rem; opacity: 0.4; }
+  .proj-img.has-img img { width: 100%; height: 100%; object-fit: cover; }
+  .proj-body { padding: 1.25rem; }
+  .proj-tag {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--accent); margin-bottom: 8px; display: block;
+  }
+  .proj-title { font-weight: 500; font-size: 15px; margin-bottom: 8px; }
+  .proj-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ---- REFLECTION ---- */
+  .reflection-wrap { max-width: 680px; margin: 0 auto; }
+  .reflection-section { margin-bottom: 2.5rem; }
+  .refl-heading {
+    font-family: 'DM Serif Display', serif; font-size: 1.4rem;
+    margin-bottom: 0.75rem; color: var(--dark);
+  }
+  .refl-text { font-size: 15px; color: var(--muted); line-height: 1.8; }
+  .pull-quote {
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.5rem; margin: 2rem 0;
+    background: var(--white);
+    font-family: 'DM Serif Display', serif; font-size: 1.1rem;
+    color: var(--dark); font-style: italic; line-height: 1.6;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* ---- CONTACT / BONUS ---- */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .contact-info h2 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 1rem; }
+  .contact-info p { font-size: 15px; color: var(--muted); margin-bottom: 1.5rem; }
+  .contact-detail { display: flex; gap: 12px; align-items: center; margin-bottom: 1rem; }
+  .contact-detail-icon {
+    width: 36px; height: 36px; background: var(--accent-light);
+    border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .contact-detail-text { font-size: 14px; color: var(--dark); }
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before { content:''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 1.5rem; }
+  .tl-dot {
+    position: absolute; left: -1.5rem; top: 6px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .tl-year { font-size: 11px; font-weight: 500; color: var(--accent); margin-bottom: 2px; }
+  .tl-title { font-weight: 500; font-size: 14px; margin-bottom: 2px; }
+  .tl-desc { font-size: 13px; color: var(--muted); }
+
+  /* ANNOTATION */
+  .annotation {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #FFF8EC; border: 1px dashed #E8C87A;
+    color: #7A5A1A; font-size: 12px; padding: 6px 12px;
+    border-radius: 2px; margin: 6px 0;
+  }
+  .annotation::before { content: '📌'; font-size: 14px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border); padding: 2rem;
+    text-align: center; font-size: 13px; color: var(--muted);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .home-inner { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.25rem; }
+    .home-photo-wrap { order: -1; }
+    .photo-frame { width: 100%; height: 280px; }
+    .about-grid, .projects-grid, .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--border); padding: 1rem 2rem; gap: 1rem; }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">Y. Sinhan</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+    <li><a href="#" onclick="showPage('about')" id="nav-about">About Me</a></li>
+    <li><a href="#" onclick="showPage('achievements')" id="nav-achievements">Achievements</a></li>
+    <li><a href="#" onclick="showPage('sem1')" id="nav-sem1">Semester 1</a></li>
+    <li><a href="#" onclick="showPage('sem2')" id="nav-sem2">Semester 2</a></li>
+    <li><a href="#" onclick="showPage('reflection')" id="nav-reflection">Reflection</a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact">Career Goals</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="home-inner">
+    <div class="home-text">
+      <span class="home-tag">BSc Computer Science · Year 1</span>
+      <h1 class="home-name">Ritika Siya<br><em>Sinhan</em></h1>
+      <p class="home-desc">Welcome to my e-portfolio. I am a first-year Computer Science student at the University of Mauritius with a passion for cybersecurity, blockchain, and technology that makes a real difference.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-fill" onclick="showPage('about')">Learn about me</button>
+        <button class="btn" onclick="showPage('sem2')">View my projects</button>
+      </div>
+      <div class="home-stats">
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Semesters completed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">7+</div>
+          <div class="stat-label">Projects & deliverables</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">DoE</div>
+          <div class="stat-label">Silver Award</div>
+        </div>
+      </div>
+    </div>
+    <div class="home-photo-wrap">
+      <div class="photo-frame">
+        <div class="photo-placeholder">
+          <span class="icon">🖼</span>
+          <p>📌 Add your photo here<br><em>Smart-casual, good lighting</em></p>
+        </div>
+      </div>
+      <div class="photo-accent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="page">
+  <div class="page-header">
+    <span class="page-tag">ABOUT ME</span>
+    <h1 class="page-title">My Story</h1>
+    <div class="divider"></div>
+    <p class="page-subtitle">A glimpse into who I am — my background, skills, and what drives me forward.</p>
+  </div>
+  <div class="content-wrap">
+    <div class="about-grid">
+      <div class="about-photo-wrap">
+        <div class="about-photo">
+          <div class="photo-placeholder">
+            <span class="icon">🖼</span>
+            <p>📌 Add a second photo here<br><em>Casual or campus photo</em></p>
+          </div>
+        </div>
+        <div class="about-accent-box">
+          <strong>UoM</strong>
+          Year 1 · BSc Computer Science
+        </div>
+      </div>
+      <div class="about-text">
+        <h2>Hello, I'm Yukta</h2>
+        <p>I am a 19-year-old Computer Science student from Mauritius, currently in my first year at the University of Mauritius. I completed my HSC with subjects in Physics, Mathematics, and Computer Science, and my passion for technology has only deepened since starting my degree.</p>
+        <p>I am highly self-motivated and detail-oriented. Outside of academics, I have a background in violin, classical dance, and sports — activities that have shaped my discipline and creativity. I was also a school prefect and an active Eco Club member, which gave me early experience in leadership and community responsibility.</p>
+        <p>My long-term goal is to complete my bachelor's here in Mauritius and then pursue a master's degree abroad — ideally specialising in cybersecurity or blockchain and smart contract auditing.</p>
+        <div class="interests-row">
+          <span class="interest-pill">Cybersecurity</span>
+          <span class="interest-pill">Blockchain</span>
+          <span class="interest-pill">Violin</span>
+          <span class="interest-pill">Classical Dance</span>
+          <span class="interest-pill">Sports</span>
+          <span class="interest-pill">Eco Club</span>
+        </div>
+        <h3 style="margin-top:2rem;margin-bottom:0.75rem;font-size:15px;font-weight:500;">Technical Skills</h3>
+        <div class="skills-grid">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Django</span>
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">Microsoft Office</span>
+          <span class="skill-tag">HTML / CSS</span>
+          <span class="skill-tag">Git (learning)</span>
+          <span class="skill-tag">Harvard Referencing</span>
+        </div>
+        <h3 style="margin-top:1.5rem;margin-bottom:0.75rem;font-size:15px;font-weight:500;">Soft Skills</h3>
+        <div class="skills-grid">
+          <span class="skill-tag">Written Communication</span>
+          <span class="skill-tag">Time Management</span>
+          <span class="skill-tag">Attention to Detail</span>
+          <span class="skill-tag">Research</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div id="achievements" class="page">
+  <div class="page-header">
+    <span class="page-tag">ACADEMIC ACHIEVEMENTS</span>
+    <h1 class="page-title">Credentials &amp; Awards</h1>
+    <div class="divider"></div>
+    <p class="page-subtitle">A record of my academic accomplishments, certifications, and extracurricular recognitions.</p>
+  </div>
+  <div class="content-wrap">
+    <div class="achieve-list">
+      <div class="achieve-card">
+        <div class="achieve-icon">🎓</div>
+        <div>
+          <div class="achieve-title">HSC — Higher School Certificate</div>
+          <div class="achieve-sub">Physics · Mathematics · Computer Science<br>Achieved strong results with a particular distinction in Computer Science.</div>
+          <span class="achieve-year">2023</span>
+          <span class="cert-note">📌 Add a scanned copy or photo of your HSC certificate here</span>
+        </div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">🏅</div>
+        <div>
+          <div class="achieve-title">Duke of Edinburgh International Award — Silver</div>
+          <div class="achieve-sub">Completed the Silver Award, involving volunteering, physical activity, skill development, and an adventurous journey. Also holds the Bronze Award.</div>
+          <span class="achieve-year">2022 – 2023</span>
+          <span class="cert-note">📌 Add a photo of your DoE certificate(s) here</span>
+        </div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">📋</div>
+        <div>
+          <div class="achieve-title">School Prefect</div>
+          <div class="achieve-sub">Elected as a school prefect, taking on responsibilities in student leadership, discipline support, and representing the student body at school events.</div>
+          <span class="achieve-year">2022 – 2023</span>
+          <span class="cert-note">📌 Add a photo from a school event or your prefect badge / certificate if you have one</span>
+        </div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">🌿</div>
+        <div>
+          <div class="achieve-title">Eco Club Member</div>
+          <div class="achieve-sub">Active member of the school Eco Club, participating in environmental awareness campaigns and sustainability initiatives.</div>
+          <span class="achieve-year">2021 – 2023</span>
+        </div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-icon">🖥</div>
+        <div>
+          <div class="achieve-title">BSc Computer Science — University of Mauritius</div>
+          <div class="achieve-sub">Currently completing Year 1. Modules include Software Engineering Principles, Database Systems, ICT for Development, and Communication & Business Skills for IT.</div>
+          <span class="achieve-year">2024 – Present</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEMESTER 1 -->
+<div id="sem1" class="page">
+  <div class="page-header">
+    <span class="page-tag">SEMESTER 1 PROJECTS</span>
+    <h1 class="page-title">First Semester Work</h1>
+    <div class="divider"></div>
+    <p class="page-subtitle">A showcase of the projects, activities, and deliverables I completed in my first semester.</p>
+  </div>
+  <div class="content-wrap">
+    <div class="projects-grid">
+      <div class="proj-card">
+        <div class="proj-img">
+          <span class="icon">🗺</span>
+          <span>📌 Add a screenshot of your Scavenger Hunt submission</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">TEAM ACTIVITY · SEMESTER 1</span>
+          <div class="proj-title">Scavenger Hunt</div>
+          <p class="proj-desc">A collaborative team activity designed to develop communication, problem-solving, and time management skills. Working in a group, we were tasked with finding and documenting a series of items and clues within a set timeframe. This activity helped me practise active collaboration and clear verbal and written communication within a team setting.</p>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img">
+          <span class="icon">🤝</span>
+          <span>📌 Add a screenshot of your Team Building document</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">GROUP ACTIVITY · SEMESTER 1</span>
+          <div class="proj-title">Team Building Activity</div>
+          <p class="proj-desc">This activity focused on developing interpersonal and collaborative skills within a professional context. It challenged me to step outside my comfort zone as a naturally introverted person, actively contributing to group discussions and shared decision-making. I learned the value of listening, compromise, and clear communication in a team environment.</p>
+          <div class="annotation" style="margin-top:10px;">📌 Embed your PDF or Word doc here via Google Drive</div>
+        </div>
+      </div>
+      <div class="proj-card" style="grid-column: span 2;">
+        <div class="proj-img" style="height:140px;">
+          <span class="icon">📊</span>
+          <span>📌 Add a screenshot of your Business Plan cover page or key section</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">WRITTEN ASSIGNMENT · SEMESTER 1</span>
+          <div class="proj-title">Business Plan</div>
+          <p class="proj-desc">As part of ICDT1016Y, I contributed to developing a structured business plan. This project introduced me to professional business writing, market research, and the structure of entrepreneurial proposals. It required research skills, clear written communication, and an understanding of how technology businesses are proposed and presented to stakeholders. The process strengthened my ability to write formally and organise complex information logically.</p>
+          <div class="annotation" style="margin-top:10px;">📌 Embed your full Business Plan PDF here via Google Drive</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEMESTER 2 -->
+<div id="sem2" class="page">
+  <div class="page-header">
+    <span class="page-tag">SEMESTER 2 PROJECTS</span>
+    <h1 class="page-title">Second Semester Work</h1>
+    <div class="divider"></div>
+    <p class="page-subtitle">More advanced projects reflecting my growth in technical writing, communication, and software development.</p>
+  </div>
+  <div class="content-wrap">
+    <div class="projects-grid">
+      <div class="proj-card" style="grid-column: span 2;">
+        <div class="proj-img" style="height:160px;">
+          <span class="icon">💻</span>
+          <span>📌 Add a screenshot of the Django system or your problem statement section</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">GROUP PROJECT · SEMESTER 2</span>
+          <div class="proj-title">Clinic Appointment Booking System</div>
+          <p class="proj-desc">A group software development project built using the Django web framework. The system was designed to allow patients to book, manage, and track clinic appointments online — reducing manual administrative workload. My specific contributions included writing the problem statement, conducting the technology background study, and compiling all Harvard references for the group synopsis. This project developed my technical research skills, academic writing ability, and capacity to collaborate on a real-world software deliverable.</p>
+          <div class="annotation" style="margin-top:10px;">📌 Embed your group synopsis PDF or your specific written section here</div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img">
+          <span class="icon">📄</span>
+          <span>📌 Add a screenshot of your research paper / synopsis first page</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">WRITTEN ASSIGNMENT · SEMESTER 2</span>
+          <div class="proj-title">Research Paper / Synopsis</div>
+          <p class="proj-desc">A formal written assignment requiring independent research, academic argumentation, and proper Harvard referencing. This project significantly developed my ability to find credible sources, synthesise information, and communicate ideas clearly in an academic format. It also reinforced the importance of original thinking and proper citation practices.</p>
+          <div class="annotation" style="margin-top:10px;">📌 Embed the full paper PDF here via Google Drive</div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-img">
+          <span class="icon">🎙</span>
+          <span>📌 Add a screenshot of your prep notes or role play script if you have one</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">COMMUNICATION SKILLS · SEMESTER 2</span>
+          <div class="proj-title">Interview / CRM Role Play</div>
+          <p class="proj-desc">A practical communication exercise simulating a professional interview or customer relationship management scenario. This was one of the most challenging activities for me personally, as it required projecting confidence and professionalism in a spoken, face-to-face context. It taught me how to listen actively, respond clearly under pressure, and present myself professionally — skills I know I will need in my career.</p>
+        </div>
+      </div>
+      <div class="proj-card" style="grid-column: span 2;">
+        <div class="proj-img" style="height:140px;">
+          <span class="icon">📊</span>
+          <span>📌 Add a screenshot of 1–2 key slides from your presentation deck</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-tag">PRESENTATION · SEMESTER 2</span>
+          <div class="proj-title">Semester 2 Presentation</div>
+          <p class="proj-desc">A formal presentation delivered to an audience, requiring clear structure, confident delivery, and effective use of visual aids. Preparing and delivering this presentation pushed me to organise complex information concisely and communicate it engagingly. It reinforced that strong technical knowledge means little without the ability to communicate it effectively to others.</p>
+          <div class="annotation" style="margin-top:10px;">📌 Embed your presentation slides here via Google Slides or as a PDF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REFLECTION -->
+<div id="reflection" class="page">
+  <div class="page-header">
+    <span class="page-tag">REFLECTION</span>
+    <h1 class="page-title">My Learning Journey</h1>
+    <div class="divider"></div>
+    <p class="page-subtitle">An honest reflection on the challenges I faced, the skills I developed, and the lessons I carry forward.</p>
+  </div>
+  <div class="content-wrap">
+    <div class="reflection-wrap">
+      <div class="pull-quote">
+        "This module has taught me that technical skill alone is not enough — the ability to communicate, collaborate, and reflect is just as important in building a meaningful career."
+      </div>
+      <div class="reflection-section">
+        <h2 class="refl-heading">Challenges I faced</h2>
+        <p class="refl-text">One of the most consistent challenges I faced throughout this module was stepping outside my comfort zone in collaborative and communicative settings. As a naturally introverted person, contributing actively in group work and delivering presentations required deliberate effort. The Interview and CRM Role Play, in particular, pushed me to present myself confidently in a spoken, live context — something I found genuinely difficult but ultimately very valuable.</p>
+        <p class="refl-text" style="margin-top:0.75rem;">Balancing multiple module deadlines simultaneously was another challenge. Managing my time across written assignments, group projects, and exam preparation taught me the importance of planning ahead and breaking large tasks into smaller, manageable steps.</p>
+      </div>
+      <div class="reflection-section">
+        <h2 class="refl-heading">Skills I developed</h2>
+        <p class="refl-text">This module has meaningfully strengthened my professional communication skills. Through the Business Plan, Research Paper, and Group Synopsis, I developed the ability to write formally, structure arguments logically, and cite sources correctly using Harvard referencing. I also gained confidence in collaborative working — learning to contribute my specific strengths while relying on and supporting teammates.</p>
+        <p class="refl-text" style="margin-top:0.75rem;">On a personal level, I became more aware of how I communicate and how I present myself to others. The role play activity, though challenging, showed me that professional communication is a skill that can be practised and improved — not just an innate talent.</p>
+      </div>
+      <div class="reflection-section">
+        <h2 class="refl-heading">Where I still need to improve</h2>
+        <p class="refl-text">I recognise that spoken communication remains an area for growth. While I am comfortable expressing myself in writing, I need to continue developing my confidence in verbal communication — particularly in group settings and when speaking to people I do not know well. I also want to improve my ability to give and receive feedback constructively within a team.</p>
+        <p class="refl-text" style="margin-top:0.75rem;">Additionally, I hope to develop a stronger foundation in professional networking and industry awareness — areas that will become increasingly important as I move towards postgraduate study and a career in cybersecurity.</p>
+      </div>
+      <div class="reflection-section">
+        <h2 class="refl-heading">How I will apply this in my career</h2>
+        <p class="refl-text">The communication and professional skills developed in ICDT1016Y form a foundation that will serve me throughout my career. In cybersecurity and blockchain — fields where complex technical concepts must be communicated clearly to clients, teams, and stakeholders — the ability to write well, present confidently, and work collaboratively is not optional. It is essential.</p>
+        <p class="refl-text" style="margin-top:0.75rem;">This module has made me a more well-rounded professional and has reinforced that the soft skills I once considered secondary are in fact among the most important I can develop.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAREER GOALS / BONUS -->
+<div id="contact" class="page">
+  <div class="page-header">
+    <span class="page-tag">CAREER GOALS</span>
+    <h1 class="page-title">My Path Forward</h1>
+    <div class="divider"></div>
+    <p class="page-subtitle">Where I am headed and why — my academic and professional roadmap.</p>
+  </div>
+  <div class="content-wrap">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Looking ahead</h2>
+        <p>My ambition is to build a career at the intersection of cybersecurity and emerging technologies like blockchain. I believe these fields will define the next decade of digital infrastructure, and I want to be part of shaping them — particularly in areas like smart contract auditing and digital security.</p>
+        <p>My plan is to complete my BSc here at UoM, then pursue a master's degree abroad — ideally in the UK, Canada, or Europe — specialising in cybersecurity or information security.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div class="contact-detail-text">📌 Add your UoM email address here</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🎓</div>
+          <div class="contact-detail-text">University of Mauritius · BSc Computer Science</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">Mauritius</div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:15px;font-weight:500;margin-bottom:1.25rem;">My roadmap</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2024 – 2026</div>
+            <div class="tl-title">Year 1 & 2 — BSc Computer Science, UoM</div>
+            <div class="tl-desc">Building core foundations in software engineering, databases, networking, and communication.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2026 – 2027</div>
+            <div class="tl-title">Year 3 — Final year project & industry exposure</div>
+            <div class="tl-desc">Targeting a cybersecurity or blockchain-related final year project. Seeking internship opportunities.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2027 – 2028</div>
+            <div class="tl-title">Master's degree abroad</div>
+            <div class="tl-desc">Postgraduate study in cybersecurity or information security — UK, Canada, or Europe.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2028 +</div>
+            <div class="tl-title">Career in cybersecurity / blockchain</div>
+            <div class="tl-desc">Smart contract auditing, digital security consulting, or information security engineering.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Ritika Siya Sinhan &nbsp;·&nbsp; BSc Computer Science, University of Mauritius &nbsp;·&nbsp; ICDT1016Y E-Portfolio</p>
+</footer>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('active');
+  document.getElementById('navLinks').classList.remove('open');
+  window.scrollTo(0, 0);
+}
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+</script>
+</body>
+</html>
