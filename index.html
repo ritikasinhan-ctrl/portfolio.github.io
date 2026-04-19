@@ -83,7 +83,8 @@
 
   .proj-card { background:var(--white); border:1px solid var(--border); border-radius:2px; overflow:hidden; margin-bottom:1.5rem; transition:transform 0.2s,box-shadow 0.2s; }
   .proj-card:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,0.06); }
-  .proj-img { height:180px; background:var(--border); display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:13px; flex-direction:column; gap:6px; }
+  .proj-img { height:180px; background:var(--border); display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:13px; flex-direction:column; gap:6px; overflow:hidden; }
+  .proj-img img { width:100%; height:100%; object-fit:cover; }
   .proj-img .icon { font-size:1.8rem; opacity:0.4; }
   .proj-two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
   .proj-body { padding:1.25rem 1.5rem; }
@@ -147,8 +148,8 @@
   <div class="home-inner">
     <div class="home-text">
       <span class="home-tag">BSc Computer Science · Year 1 · University of Mauritius</span>
-      <h1 class="home-name">Ritika Siya<br><em>Sinhan</em></h1>
-      <p class="home-desc">Welcome to my e-portfolio. I am a first-year Computer Science student at the University of Mauritius with professional work experience, a passion for coding and cybersecurity, and a commitment to building technology that makes a real difference.</p>
+      <h1 class="home-name">Ritika<br><em>Sinhan</em></h1>
+      <p class="home-desc">Welcome to my e-portfolio. I am a first-year Computer Science student at the University of Mauritius with professional work experience, a passion for database systems and cybersecurity, and a commitment to building technology that makes a real difference.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
         <button class="btn btn-fill" onclick="showPage('about')">Learn about me</button>
         <button class="btn" onclick="showPage('sem2')">View my projects</button>
@@ -164,7 +165,7 @@
       <div class="photo-frame">
         <div class="photo-placeholder">
           <span class="icon">🖼</span>
-          <p>📌 Add your photo here<br><em>Smart-casual, good lighting</em></p>
+          <p>📌 Upload your photo to GitHub repo<br>then replace this with an img tag</p>
         </div>
       </div>
       <div class="photo-accent"></div>
@@ -186,16 +187,16 @@
         <div class="about-photo">
           <div class="photo-placeholder">
             <span class="icon">🖼</span>
-            <p>📌 Add a second photo here<br><em>Casual or campus photo</em></p>
+            <p>📌 Upload a second photo to GitHub<br>then replace this with an img tag</p>
           </div>
         </div>
         <div class="about-accent-box"><strong>UoM</strong>Year 1 · BSc Computer Science</div>
       </div>
       <div class="about-text">
         <h2>Hello, I'm Ritika</h2>
-        <p>I am a 21-year-old Computer Science student from Mauritius, currently completing my first year at the University of Mauritius. I completed my HSC with subjects in Physics, Mathematics, and Computer Science, and my interest in technology has only deepened since starting my degree.</p>
+        <p>I am a 19-year-old Computer Science student from Mauritius, currently completing my first year at the University of Mauritius. I completed my HSC with subjects in Physics, Mathematics, and Computer Science, and my interest in technology has only deepened since starting my degree.</p>
         <p>Before university, I gained real-world professional experience working as a full-time Pension Administrator at MUA (Mauritius Union Assurance). This role gave me practical exposure to data handling, client communication, and professional standards in a live workplace — skills I bring directly into my academic work.</p>
-        <p>Outside academics, I have a background in violin, classical dance, swimming and athletics. I was also a school prefect and an active Eco Club member.</p>
+        <p>Outside academics, I have a background in violin, classical dance, and athletics. I was also a school prefect and an active Eco Club member.</p>
         <p>My long-term goal is to complete my BSc here in Mauritius, then pursue a master's degree abroad specialising in cybersecurity or blockchain technology.</p>
         <div class="interests-row">
           <span class="interest-pill">Cybersecurity</span>
@@ -259,7 +260,7 @@
           <span class="exp-skill">Record Management</span>
           <span class="exp-skill">Financial Services</span>
         </div>
-        <div class="annotation">📌 Add a photo, reference letter, or any professional evidence from your time at MUA if available</div>
+        <div class="annotation">📌 Upload any evidence (reference letter, certificate) to GitHub repo and add as img tag here</div>
       </div>
     </div>
     <div style="background:var(--white);border:1px solid var(--border);border-radius:2px;padding:1.5rem;margin-top:0.5rem;">
@@ -283,18 +284,18 @@
         <div class="achieve-icon">🎓</div>
         <div>
           <div class="achieve-title">HSC — Higher School Certificate</div>
-          <div class="achieve-sub">Physics · Mathematics · Computer Science. Achieved strong results with a particular distinction in Computer Science, forming the foundation of my current degree.</div>
+          <div class="achieve-sub">Physics · Mathematics · Computer Science. Achieved strong results with a distinction in Computer Science, forming the foundation of my current degree.</div>
           <span class="achieve-year">2023</span>
-          <span class="cert-note">📌 Add a scan or photo of your HSC certificate here</span>
+          <span class="cert-note">📌 Upload HSC certificate to GitHub repo and add as img tag here</span>
         </div>
       </div>
       <div class="achieve-card">
         <div class="achieve-icon">🏅</div>
         <div>
-          <div class="achieve-title">Duke of Edinburgh International Award — Bronze Silver, Gold-ongoing</div>
+          <div class="achieve-title">Duke of Edinburgh International Award — Silver</div>
           <div class="achieve-sub">Completed the Silver Award programme involving sustained volunteering, physical activity, skill development, and an adventurous journey. Also holds the Bronze Award. This programme strengthened my discipline, resilience, and commitment to personal growth beyond academics.</div>
-          <span class="achieve-year">2020-2021, 2022 – 2023 , 2025-present</span>
-          <span class="cert-note">📌 Add a photo of your DoE Silver and Bronze certificates here</span>
+          <span class="achieve-year">2022 – 2023</span>
+          <span class="cert-note">📌 Upload DoE certificate(s) to GitHub repo and add as img tag here</span>
         </div>
       </div>
       <div class="achieve-card">
@@ -303,14 +304,14 @@
           <div class="achieve-title">School Prefect</div>
           <div class="achieve-sub">Elected as a school prefect, taking on responsibilities in student leadership, supporting school discipline, and representing the student body at events. This role developed my sense of accountability and leadership by example.</div>
           <span class="achieve-year">2022 – 2023</span>
-          <span class="cert-note">📌 Add a photo from a school event or prefect certificate if available</span>
+          <span class="cert-note">📌 Upload a photo from a school event to GitHub repo and add as img tag here</span>
         </div>
       </div>
       <div class="achieve-card">
         <div class="achieve-icon">🌿</div>
         <div>
           <div class="achieve-title">Eco Club Member</div>
-          <div class="achieve-sub">Active member of the school Eco Club, participating in environmental awareness campaigns and sustainability initiatives. This shaped my belief that professionals in any field have a responsibility to consider wider social and environmental impact.</div>
+          <div class="achieve-sub">Active member of the school Eco Club, participating in environmental awareness campaigns and sustainability initiatives.</div>
           <span class="achieve-year">2021 – 2023</span>
         </div>
       </div>
@@ -318,8 +319,8 @@
         <div class="achieve-icon">🖥</div>
         <div>
           <div class="achieve-title">BSc Computer Science — University of Mauritius</div>
-          <div class="achieve-sub">Currently completing Year 1. Modules include Software Engineering Principles (ICT1208Y), Database Systems (ICDT1202Y), Computer Programming, Communication & Business Skills for IT (ICDT1016Y), and Computational Mathematics.</div>
-          <span class="achieve-year">2025 – Present</span>
+          <div class="achieve-sub">Currently completing Year 1. Modules include Software Engineering Principles (ICT1208Y), Database Systems (ICDT1202Y), ICT for Development, and Communication & Business Skills for IT (ICDT1016Y).</div>
+          <span class="achieve-year">2024 – Present</span>
         </div>
       </div>
     </div>
@@ -339,13 +340,13 @@
     <div class="proj-card">
       <div class="proj-img">
         <span class="icon">🗺</span>
-        <span style="font-size:12px;">📌 Add screenshots of your Scavenger Hunt slides or activity images here</span>
+        <span style="font-size:12px;">📌 Upload Scavenger Hunt screenshots to GitHub and replace with img tag</span>
       </div>
       <div class="proj-body">
         <span class="proj-tag">GROUP ACTIVITY · SEMESTER 1 · ICDT1016Y</span>
         <div class="proj-title">Reverse Scavenger Hunt</div>
         <p class="proj-desc">A group-based reverse scavenger hunt where our team was given abstract captions and challenged to represent each one creatively through images. Unlike a traditional scavenger hunt, we had to interpret the captions in a unique and meaningful way, then present our results to the class.</p>
-        <p class="proj-desc">I actively contributed to brainstorming ideas, creating visual representations, and presenting selected slides to the audience. One of the most valuable aspects of this activity was working through both interpersonal and logistical challenges as a team — situations that taught me the importance of compromise, staying composed under pressure, and supporting teammates toward a shared goal. For someone who is naturally introverted, this experience pushed me to communicate more openly and contributed directly to my growth in confidence.</p>
+        <p class="proj-desc">I actively contributed to brainstorming ideas, creating visual representations, and presenting selected slides to the audience. Working through both interpersonal and logistical challenges as a team taught me the importance of compromise, staying composed under pressure, and supporting teammates toward a shared goal. For someone naturally introverted, this experience pushed me to communicate more openly and contributed directly to my growth in confidence.</p>
         <div class="proj-skills">
           <span class="proj-skill">Teamwork</span>
           <span class="proj-skill">Creative Thinking</span>
@@ -353,7 +354,7 @@
           <span class="proj-skill">Adaptability</span>
           <span class="proj-skill">Visual Communication</span>
         </div>
-        <div class="annotation">📌 Add 2–3 screenshots of your slides or images from the activity</div>
+        <div class="annotation">📌 Upload slides or activity screenshots to GitHub and add img tags here</div>
       </div>
     </div>
 
@@ -361,7 +362,7 @@
       <div class="proj-card">
         <div class="proj-img" style="height:150px;">
           <span class="icon">🤝</span>
-          <span style="font-size:12px;">📌 Add screenshot of submission</span>
+          <span style="font-size:12px;">📌 Upload screenshot to GitHub and replace with img tag</span>
         </div>
         <div class="proj-body">
           <span class="proj-tag">GROUP ACTIVITY · SEMESTER 1</span>
@@ -372,14 +373,14 @@
             <span class="proj-skill">Active Listening</span>
             <span class="proj-skill">Interpersonal Skills</span>
           </div>
-          <div class="annotation">📌 Embed your PDF or Word doc via Google Drive</div>
+          <div class="annotation">📌 Embed PDF via Google Drive iframe here</div>
         </div>
       </div>
 
       <div class="proj-card">
         <div class="proj-img" style="height:150px;">
           <span class="icon">📊</span>
-          <span style="font-size:12px;">📌 Add screenshot of your Business Plan cover page</span>
+          <span style="font-size:12px;">📌 Upload Business Plan screenshot to GitHub and replace with img tag</span>
         </div>
         <div class="proj-body">
           <span class="proj-tag">WRITTEN ASSIGNMENT · SEMESTER 1</span>
@@ -390,7 +391,7 @@
             <span class="proj-skill">Research</span>
             <span class="proj-skill">Formal Communication</span>
           </div>
-          <div class="annotation">📌 Embed your Business Plan PDF via Google Drive</div>
+          <div class="annotation">📌 Embed Business Plan PDF via Google Drive iframe here</div>
         </div>
       </div>
     </div>
@@ -411,13 +412,13 @@
     <div class="proj-card">
       <div class="proj-img" style="height:160px;">
         <span class="icon">🏥</span>
-        <span style="font-size:12px;">📌 Add a screenshot of the system login page or your written section</span>
+        <span style="font-size:12px;">📌 Upload a screenshot of the system or your written section to GitHub and replace with img tag</span>
       </div>
       <div class="proj-body">
-        <span class="proj-tag">GROUP PROJECT · SEMESTER 2 · ICDT1016Y — COMMUNICATION & BUSINESS SKILLS</span>
+        <span class="proj-tag">GROUP PROJECT · SEMESTER 2 · ICDT1016Y</span>
         <div class="proj-title">Clinic Appointment Booking System — Group Synopsis</div>
         <p class="proj-desc">A group academic writing project in which we produced a comprehensive synopsis for a web-based Clinic Appointment Booking System using the Django framework. The system was designed to address the inefficiencies of manual appointment management in Mauritian clinics — including scheduling conflicts, high administrative workload, and limited patient access outside office hours.</p>
-        <p class="proj-desc">My specific contributions covered the Statement of the Problem — detailing issues such as manual workload, double bookings, lack of 24/7 access, and no-shows — as well as the Technology Potentials section, which analysed web frameworks, database technologies, notification services, and cloud hosting options. I also compiled all Harvard references for the group submission.</p>
+        <p class="proj-desc">My specific contributions covered the Statement of the Problem and the Technology Potentials section, which analysed web frameworks, database technologies, notification services, and cloud hosting options. I also compiled all Harvard references for the group submission.</p>
         <div class="proj-skills">
           <span class="proj-skill">Academic Writing</span>
           <span class="proj-skill">Harvard Referencing</span>
@@ -425,20 +426,20 @@
           <span class="proj-skill">Technical Research</span>
           <span class="proj-skill">Group Collaboration</span>
         </div>
-        <div class="annotation">📌 Embed the group synopsis PDF via Google Drive</div>
+        <div class="annotation">📌 Embed synopsis PDF via Google Drive iframe here</div>
       </div>
     </div>
 
     <div class="proj-card">
       <div class="proj-img" style="height:160px;">
         <span class="icon">🗄</span>
-        <span style="font-size:12px;">📌 Add a screenshot of your ERD diagram or the report cover page</span>
+        <span style="font-size:12px;">📌 Upload ERD screenshot or cover page to GitHub and replace with img tag</span>
       </div>
       <div class="proj-body">
         <span class="proj-tag">GROUP ASSIGNMENT · SEMESTER 2 · ICDT1202Y — DATABASE SYSTEMS</span>
         <div class="proj-title">Hotel Management System — Database Design</div>
-        <p class="proj-desc">A database systems group assignment in which we designed and implemented a full Hotel Management System database. The project involved complete normalisation from UNF through to 3NF, an Entity Relationship Diagram, 17 fully specified database tables covering guests, rooms, reservations, restaurant orders, billing, and staff management, 15 stored procedures ranging from basic to expert complexity, 7 triggers enforcing business rules such as double-booking prevention and automatic room status updates, role-based access control using DCL, and a comprehensive indexing strategy.</p>
-        <p class="proj-desc">I contributed equally (20%) across the design and implementation. This was the most technically demanding project of the year and gave me deep, practical experience in database architecture and SQL programming.</p>
+        <p class="proj-desc">A database systems group assignment in which we designed and implemented a full Hotel Management System database. The project involved complete normalisation from UNF through to 3NF, an Entity Relationship Diagram, 17 fully specified database tables covering guests, rooms, reservations, restaurant orders, billing, and staff management, 15 stored procedures of varying complexity, 7 triggers enforcing business rules such as double-booking prevention and automatic room status updates, role-based access control using DCL, and a comprehensive indexing strategy.</p>
+        <p class="proj-desc">I contributed equally (20%) across the design and implementation. This was the most technically demanding project of the year and gave me deep practical experience in database architecture and SQL programming.</p>
         <div class="proj-skills">
           <span class="proj-skill">SQL / T-SQL</span>
           <span class="proj-skill">Database Normalisation</span>
@@ -448,7 +449,7 @@
           <span class="proj-skill">DCL & Security</span>
           <span class="proj-skill">Indexing</span>
         </div>
-        <div class="annotation">📌 Embed the database report PDF via Google Drive</div>
+        <div class="annotation">📌 Embed database report PDF via Google Drive iframe here</div>
       </div>
     </div>
 
@@ -456,44 +457,45 @@
       <div class="proj-card">
         <div class="proj-img" style="height:150px;">
           <span class="icon">🎙</span>
-          <span style="font-size:12px;">📌 Add a screenshot of your presentation slides</span>
+          <span style="font-size:12px;">📌 Upload presentation screenshot to GitHub and replace with img tag</span>
         </div>
         <div class="proj-body">
           <span class="proj-tag">PRESENTATION · SEMESTER 2 · ICDT1016Y</span>
           <div class="proj-title">Surviving Online Learning — Presentation</div>
-          <p class="proj-desc">A formal presentation on the challenges and strategies of online learning as a university student. Preparing and delivering this required me to research the topic thoroughly, structure a clear argument, design professional slides, and present confidently to an audience. It was a direct and valuable test of my spoken communication skills.</p>
+          <p class="proj-desc">A formal presentation on the challenges and strategies of online learning as a university student. Preparing and delivering this required me to research the topic thoroughly, structure a clear argument, design professional slides, and present confidently to an audience — a direct test of my spoken communication skills.</p>
           <div class="proj-skills">
             <span class="proj-skill">Presentation Design</span>
             <span class="proj-skill">Public Speaking</span>
             <span class="proj-skill">Research</span>
             <span class="proj-skill">Slide Design</span>
           </div>
-          <div class="annotation">📌 Embed your PowerPoint slides via Google Slides or as PDF</div>
+          <div class="annotation">📌 Embed slides via Google Slides or PDF iframe here</div>
         </div>
       </div>
 
       <div class="proj-card">
         <div class="proj-img" style="height:150px;">
           <span class="icon">📄</span>
-          <span style="font-size:12px;">📌 Add a screenshot of your research paper first page</span>
+          <span style="font-size:12px;">📌 Upload research paper screenshot to GitHub and replace with img tag</span>
         </div>
         <div class="proj-body">
           <span class="proj-tag">WRITTEN ASSIGNMENT · SEMESTER 2</span>
-          <div class="proj-title">Research Paper / Synopsis — Academic Writing</div>
-          <p class="proj-desc">A formal academic writing assignment requiring independent research, structured argumentation, and correct Harvard referencing. This project consolidated my academic writing skills and reinforced the importance of using credible sources, maintaining objectivity, and communicating complex ideas in a precise and well-organised format.</p>
+          <div class="proj-title">Research Paper — Academic Writing</div>
+          <p class="proj-desc">A formal academic writing assignment requiring independent research, structured argumentation, and correct Harvard referencing. This project consolidated my academic writing skills and reinforced the importance of using credible sources, maintaining objectivity, and presenting complex ideas in a precise and well-organised format.</p>
           <div class="proj-skills">
             <span class="proj-skill">Academic Writing</span>
             <span class="proj-skill">Harvard Referencing</span>
             <span class="proj-skill">Critical Thinking</span>
           </div>
-          <div class="annotation">📌 Embed the paper PDF via Google Drive</div>
+          <div class="annotation">📌 Embed paper PDF via Google Drive iframe here</div>
         </div>
       </div>
     </div>
 
     <div class="proj-card" style="margin-top:0;">
-      <div class="proj-img" style="height:120px;">
-        <img src="https://imgur.com/a/vO7kgJR" style="width:100%;height:100%;object-fit:cover;">
+      <div class="proj-img" style="height:220px;">
+        <img src="https://ritikasinhan-ctrl.github.io/IMG_9047.jpeg" alt="Interview / CRM Role Play" style="width:100%;height:100%;object-fit:cover;">
+      </div>
       <div class="proj-body">
         <span class="proj-tag">COMMUNICATION SKILLS · SEMESTER 2 · ICDT1016Y</span>
         <div class="proj-title">Interview / CRM Role Play</div>
@@ -524,14 +526,14 @@
 
       <h2 class="refl-heading">Challenges I faced</h2>
       <p class="refl-text">One of the most consistent challenges this year was stepping outside my comfort zone in collaborative and communicative settings. As a naturally introverted person, contributing actively in group work and delivering presentations required deliberate and conscious effort. The Interview and CRM Role Play was particularly difficult — it demanded that I project confidence in a live, face-to-face context, which I found genuinely uncomfortable at first.</p>
-      <p class="refl-text">Balancing ICDT1016Y alongside technically demanding modules like Database Systems was also challenging. Managing deadlines across creative group activities, formal academic writing, and complex SQL implementation taught me the importance of planning ahead and maintaining quality across very different types of work at the same time.</p>
+      <p class="refl-text">Balancing ICDT1016Y alongside technically demanding modules like Database Systems was also challenging. Managing deadlines across creative group activities, formal academic writing, and complex SQL implementation taught me the importance of planning ahead and maintaining quality across very different types of work simultaneously.</p>
 
       <h2 class="refl-heading">Skills I developed</h2>
-      <p class="refl-text">This module has meaningfully developed my professional communication skills. Through the Business Plan, Clinic Booking System synopsis, and Research Paper, I built the ability to write formally, structure arguments clearly, and reference sources correctly using the Harvard system. The group activities — particularly the Scavenger Hunt — helped me become more comfortable contributing in team settings, which is a real area of personal growth.</p>
-      <p class="refl-text">My experience at MUA before university gave me an early foundation in professional communication. ICDT1016Y helped me articulate and build on that foundation more consciously — connecting what I already knew from the workplace with the communication frameworks studied in the module.</p>
+      <p class="refl-text">This module meaningfully developed my professional communication skills. Through the Business Plan, Clinic Booking System synopsis, and Research Paper, I built the ability to write formally, structure arguments clearly, and reference sources correctly using the Harvard system. The group activities — particularly the Scavenger Hunt — helped me become more comfortable contributing in team settings, which is a real area of personal growth.</p>
+      <p class="refl-text">My experience at MUA before university gave me an early foundation in professional communication. ICDT1016Y helped me articulate and build on that foundation more consciously — connecting what I already knew from the workplace with the communication frameworks studied in this module.</p>
 
       <h2 class="refl-heading">Where I still need to improve</h2>
-      <p class="refl-text">Spoken communication is the area I most want to develop. While I am confident in written communication, verbal communication — particularly in group discussions and presentations to unfamiliar audiences — remains challenging. I intend to address this through continued practice and by seeking opportunities to present and speak in professional settings.</p>
+      <p class="refl-text">Spoken communication is the area I most want to develop. While I am confident in written communication, verbal communication — particularly in group discussions and presentations to unfamiliar audiences — remains challenging. I intend to address this through continued practice and by seeking opportunities to present in professional settings.</p>
       <p class="refl-text">I also recognise that professional networking is an area I need to develop intentionally. As I move toward postgraduate study and a career in cybersecurity or database security, being able to communicate my technical skills clearly to non-technical stakeholders will be essential.</p>
 
       <h2 class="refl-heading">How I will apply this in my career</h2>
@@ -608,7 +610,7 @@
 </div>
 
 <footer>
-  <p>© 2025 Ritika Siya Sinhan &nbsp;·&nbsp; BSc Computer Science, University of Mauritius &nbsp;·&nbsp; ICDT1016Y E-Portfolio</p>
+  <p>© 2025 Ritika Sinhan &nbsp;·&nbsp; BSc Computer Science, University of Mauritius &nbsp;·&nbsp; ICDT1016Y E-Portfolio</p>
 </footer>
 
 <script>
